@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-toolbar color="warning">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>My Favourite</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid class="ion-padding">
+    <ion-row>
+      <ion-col size="6" size-md="4" *ngFor="let a of list;let i = index">
+        <a href="javascript:void(0)" class="floating-top-right active" (click)="addRemoveFavourite(list, i)"><ion-icon name="heart"></ion-icon></a>
+        <a routerLink="/detail/{{a.name}}">
+          <div class="custom-card" [ngClass]="{
+            'tag-yellow': a.types?.includes('normal') || a.types?.includes('electric'),
+            'tag-green': a.types?.includes('grass') || a.types?.includes('poison'),
+            'tag-red': a.types?.includes('fire') || a.types?.includes('fairy'),
+            'tag-blue': a.types?.includes('water') || a.types?.includes('flying'),
+            'tag-brown': a.types?.includes('bug') || a.types?.includes('ground')
+          }">
+            <div class="card">
+              <div class="card-thumbnail"><img [src]="a.thumbnail"></div>
+              <div class="card-content">
+                <h4>{{a.name|titlecase}}</h4>
+                <small *ngFor="let b of a.types">{{b|titlecase}}</small>
+              </div>
+            </div>
+            <img class="pattern" src="../../assets/elements/pokeball.png"/>
+          </div>
+        </a>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

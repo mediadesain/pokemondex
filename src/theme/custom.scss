@@ -1,0 +1,98 @@
+/*---------- Overwrite ----------*/
+body {
+  --ion-background-color: #f9f9f9;
+  --ion-card-background: #ffffff;
+}
+ion-header {position: unset;}
+.header-ios ion-toolbar:last-of-type {
+  --border-width: 0;
+}
+.header-collapse-condense ion-toolbar {
+  --background: transparent;
+}
+ion-col a {color:unset;text-decoration: none;}
+
+/*---------- Custom ----------*/
+.list-nopadding { padding-inline-start: 20px; }
+.floating-top-right{font-size: 25px; position: absolute; top: 15px; right: 15px; color: rgb(0 0 0 / 20%);z-index: 5;}
+.floating-top-right.active {color:#fd4545}
+
+.custom-card {
+  background: var(--ion-card-background, var(--ion-item-background, var(--ion-background-color, #fff)));
+  position: relative;
+  overflow: hidden;
+  box-shadow: rgb(0 0 0 / 12%) 0px 0 10px;
+  padding: 20px;
+  border-radius: 10px;
+  height: 100%;
+  border: 1px solid #ddd;
+}
+.tag-yellow { background: #fff8cc; }
+.tag-green { background: #e6ffe3; }
+.tag-red { background: #f3e7e7; }
+.tag-blue { background: #e3f3ff; }
+.tag-brown { background: #fbf5ec; }
+.card-thumbnail img {
+  width: 100%;
+  max-width: 120px;
+  margin: 0 auto;
+  display: block;
+}
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  height: 100%;
+  z-index: 1;
+  position: relative;
+}
+.card-thumbnail {
+  margin:auto;
+}
+.card-thumbnail img {
+  max-width: 120px;
+  margin: 0 auto;
+  display: block;
+}
+.card-content small {
+  padding: 3px 7px;
+  border-radius: 10px;
+  margin-right: 3px;
+  background: rgb(125 125 125 / 20%)
+}
+img.pattern {
+  position: absolute;
+  max-width: 150px;
+  top: -30px;
+  right: -19px;
+  z-index: 0;
+  opacity: .09;
+}
+.topbar-segment {
+  z-index: 0;
+  padding: 5px;
+}
+
+.bar {
+  width: 100%;
+  background-color: #ddd;
+  border-radius:15px;
+  overflow:hidden;
+  position:relative;
+  margin-bottom:15px;
+}
+
+.filled-bar {
+  text-align: left;
+  padding: 3px 10px 5px;
+  color: white;
+  background-color: #29cc27;
+  font-size: small;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+@media (max-width:350px){
+  .card-content small {font-size: 10px;}
+}

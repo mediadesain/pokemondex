@@ -1,0 +1,77 @@
+<ion-header>
+  <ion-toolbar color="warning">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{item?.name|titlecase}} Biography</ion-title>
+  </ion-toolbar>
+  <ion-toolbar class="topbar-segment">
+    <ion-segment name="activetab" [(ngModel)]="activetab" (ionChange)="segmentChanged($event)">
+      <ion-segment-button value="detail">
+        <ion-label>Detail</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="stats">
+        <ion-label>Stats</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="moves">
+        <ion-label>Moves</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <center><img [src]="item?.sprites.other['official-artwork'].front_default" style="margin: 40px 0 30px;max-width: 300px;"/></center>
+  <ng-container [ngSwitch]="activetab">
+    <!-- Detail -->
+    <ng-container *ngSwitchCase="'detail'">
+      <div class="ion-padding" *ngIf="item">
+        <h4>Detail</h4>
+        <ion-item>
+          <ion-label>Name</ion-label>
+          <ion-label>{{item.name|titlecase}}</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>Types</ion-label>
+          <ion-label>
+            <ul class="list-nopadding"><li *ngFor="let a of item.types">{{a}}</li></ul>
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>Abilities</ion-label>
+          <ion-label>
+            <ul class="list-nopadding"><li *ngFor="let a of item.abilities">{{a}}</li></ul>
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>Height</ion-label>
+          <ion-label>{{item.height}}</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>Weight</ion-label>
+          <ion-label>{{item.weight}}</ion-label>
+        </ion-item>
+      </div>
+    </ng-container>
+    <!-- Stats -->
+    <ng-container *ngSwitchCase="'stats'">
+      <div class="ion-padding" *ngIf="item">
+        <h4>Stats</h4>
+        <div class="bar" *ngFor="let a of item.statsparse">
+          <div class="filled-bar" [ngStyle]="{'width':a.value+'%'}">{{a.name|titlecase}}</div>
+        </div>
+      </div>
+    </ng-container>
+    <!-- Moves -->
+    <ng-container *ngSwitchCase="'moves'">
+      <div class="ion-padding" *ngIf="item">
+        <h4>Moves</h4>
+        <ion-list *ngFor="let a of item.moves">
+          <ion-item>
+            <ion-label>{{a|titlecase}}</ion-label>
+          </ion-item>
+        </ion-list>
+      </div>
+    </ng-container>
+  </ng-container>
+</ion-content>

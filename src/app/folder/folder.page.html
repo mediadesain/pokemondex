@@ -1,0 +1,61 @@
+<ion-header>
+  <ion-toolbar color="warning">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>{{ type | titlecase }} Type</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <img src="../assets/elements/bg.png" style="position: absolute; top: -28px;"/>
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title color="primary" size="large"><center>{{ type | titlecase }} Type</center></ion-title>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-grid class="ion-padding">
+    <ion-row>
+      <ion-col size="12">
+        <div class="custom-card">
+          <div class="card">
+            <div class="card-content">
+              <h4>Welcome to The Pokédex</h4>
+              The Pokédex (Japanese: ポケモン図鑑 illustrated Pokémon encyclopedia) is a digital encyclopedia created by Professor Oak as an invaluable tool to Trainers in the Pokémon world.
+            </div>
+          </div>
+        </div>
+      </ion-col>
+      <ion-col size="6" size-md="4" *ngFor="let a of list">
+        <a href="javascript:void(0)" [ngClass]="{'active': favouritelist.includes(a.name)}" class="floating-top-right" (click)="addFavourite(a)"><ion-icon name="heart"></ion-icon></a>
+        <a routerLink="/detail/{{a.name}}">
+          <div class="custom-card" [ngClass]="{
+            'tag-yellow': a.types?.includes('normal') || a.types?.includes('electric'),
+            'tag-green': a.types?.includes('grass') || a.types?.includes('poison'),
+            'tag-red': a.types?.includes('fire') || a.types?.includes('fairy'),
+            'tag-blue': a.types?.includes('water') || a.types?.includes('flying'),
+            'tag-brown': a.types?.includes('bug') || a.types?.includes('ground')
+          }">
+            <div class="card">
+              <div class="card-thumbnail"><img [src]="a.thumbnail"></div>
+              <div class="card-content">
+                <h4>{{a.name|titlecase}}</h4>
+                <small *ngFor="let b of a.types">{{b|titlecase}}</small>
+              </div>
+            </div>
+            <img class="pattern" src="../../assets/elements/pokeball.png"/>
+          </div>
+        </a>
+      </ion-col>
+      <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">
+        <ion-infinite-scroll-content
+          loadingSpinner="bubbles"
+          loadingText="Loading more data...">
+        </ion-infinite-scroll-content>
+      </ion-infinite-scroll>
+    </ion-row>
+  </ion-grid>
+  
+  
+</ion-content>
